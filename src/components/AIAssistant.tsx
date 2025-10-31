@@ -43,16 +43,7 @@ export const AIAssistant = () => {
     <div className="w-96 bg-[hsl(var(--editor-sidebar))] border-l border-[hsl(var(--editor-border))] flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-[hsl(var(--editor-border))]">
-        <div className="flex items-center justify-center mb-6">
-          <div className="relative">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-[hsl(var(--code-function))] flex items-center justify-center">
-              <div className="w-12 h-12 rounded-xl bg-[hsl(var(--editor-sidebar))] flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-primary" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2 className="text-center text-xl font-bold tracking-wide mb-2">CODELINK</h2>
+        <h2 className="text-center text-xl font-bold tracking-wide">CODELINK</h2>
       </div>
 
       {/* Tabs */}
