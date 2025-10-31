@@ -116,91 +116,78 @@ export const AIAssistant = () => {
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-[hsl(var(--editor-border))] space-y-3">
-        {/* Work Mode Selector */}
-        <div className="flex gap-2 pb-2">
-          {workModes.map((mode) => (
-            <button
-              key={mode}
-              onClick={() => setSelectedWorkMode(mode)}
-              className={`px-3 py-1.5 text-sm rounded transition-colors ${
-                selectedWorkMode === mode
-                  ? "bg-[hsl(var(--editor-hover))] text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {mode}
-            </button>
-          ))}
-        </div>
-
-        {/* Input Box */}
+      <div className="p-4 border-t border-[hsl(var(--editor-border))]">
         <div className="relative">
-          <div className="flex items-center gap-2 p-3 bg-[hsl(var(--editor-hover))] border border-[hsl(var(--editor-border))] rounded-lg focus-within:border-primary transition-colors">
-            {/* Left Icons */}
-            <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0">
-              <AtSign className="h-4 w-4 text-muted-foreground" />
-            </Button>
-            <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0">
-              <ImagePlus className="h-4 w-4 text-muted-foreground" />
-            </Button>
-
-            {/* Input */}
-            <Input
+          <div className="flex flex-col gap-3 p-4 bg-[hsl(var(--editor-hover))] border border-[hsl(var(--editor-border))] rounded-lg focus-within:border-primary transition-colors min-h-[120px]">
+            {/* Input Area - Takes up most space */}
+            <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="请清晰描述您的需求，支持快捷键输入 (Ctrl+I)"
-              className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-0 h-6 text-sm"
+              placeholder="请清晰描述您的需求，支持粘贴图片 (Ctrl+V)"
+              className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 resize-none text-sm text-foreground placeholder:text-muted-foreground outline-none min-h-[60px]"
             />
 
-            {/* Right Controls */}
-            <div className="flex items-center gap-2 shrink-0">
-              {/* Model Selector */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    <span>{selectedModel}</span>
-                    <ChevronDown className="h-3 w-3" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-[hsl(var(--editor-sidebar))] border-[hsl(var(--editor-border))] z-50">
-                  {models.map((model) => (
-                    <DropdownMenuItem
-                      key={model}
-                      onClick={() => setSelectedModel(model)}
-                      className="text-sm hover:bg-[hsl(var(--editor-hover))] cursor-pointer"
-                    >
-                      {model}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+            {/* Bottom Controls Bar */}
+            <div className="flex items-center justify-between pt-2 border-t border-[hsl(var(--editor-border))]">
+              {/* Left Icons */}
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon" className="h-6 w-6">
+                  <AtSign className="h-4 w-4 text-muted-foreground" />
+                </Button>
+                <Button variant="ghost" size="icon" className="h-6 w-6">
+                  <ImagePlus className="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
 
-              {/* Work Mode Selector */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    <span>{selectedWorkMode}</span>
-                    <ChevronDown className="h-3 w-3" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-[hsl(var(--editor-sidebar))] border-[hsl(var(--editor-border))] z-50">
-                  {workModes.map((mode) => (
-                    <DropdownMenuItem
-                      key={mode}
-                      onClick={() => setSelectedWorkMode(mode)}
-                      className="text-sm hover:bg-[hsl(var(--editor-hover))] cursor-pointer"
-                    >
-                      {mode}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              {/* Right Controls */}
+              <div className="flex items-center gap-3">
+                {/* Model Selector */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                      <span>{selectedModel}</span>
+                      <ChevronDown className="h-3 w-3" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-[hsl(var(--editor-sidebar))] border-[hsl(var(--editor-border))] z-50">
+                    {models.map((model) => (
+                      <DropdownMenuItem
+                        key={model}
+                        onClick={() => setSelectedModel(model)}
+                        className="text-sm hover:bg-[hsl(var(--editor-hover))] cursor-pointer"
+                      >
+                        {model}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-              {/* Send Button */}
-              <Button size="icon" className="h-7 w-7 bg-primary hover:bg-primary/90 shrink-0">
-                <Send className="h-3.5 w-3.5" />
-              </Button>
+                {/* Work Mode Selector */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                      <span>{selectedWorkMode}</span>
+                      <ChevronDown className="h-3 w-3" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-[hsl(var(--editor-sidebar))] border-[hsl(var(--editor-border))] z-50">
+                    {workModes.map((mode) => (
+                      <DropdownMenuItem
+                        key={mode}
+                        onClick={() => setSelectedWorkMode(mode)}
+                        className="text-sm hover:bg-[hsl(var(--editor-hover))] cursor-pointer"
+                      >
+                        {mode}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Send Button */}
+                <Button size="icon" className="h-7 w-7 bg-primary hover:bg-primary/90">
+                  <Send className="h-3.5 w-3.5" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
