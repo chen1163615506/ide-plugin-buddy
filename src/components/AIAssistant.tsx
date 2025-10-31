@@ -43,7 +43,7 @@ export const AIAssistant = () => {
     <div className="w-96 bg-[hsl(var(--editor-sidebar))] border-l border-[hsl(var(--editor-border))] flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-[hsl(var(--editor-border))]">
-        <h2 className="text-center text-xl font-bold tracking-wide">CODELINK</h2>
+        <h2 className="text-left text-sm font-bold tracking-wide">CODELINK</h2>
       </div>
 
       {/* Tabs */}
